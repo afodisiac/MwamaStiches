@@ -1,0 +1,413 @@
+:root {
+  --primary: #F1916D;
+  --secondary: #BD83B8;
+  --dark: #1E1E1E;
+  --light: #F5F5F5;
+  --accent: #FF6B6B;
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #e07d5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    /* background-color: #F1916D; */
+}
+/* .header{
+    background-color: #BD83B8;
+    border: 1px solid; */
+/* } */
+.nav-bar{
+    padding: 20px;
+    background-color: #F1916D;
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+.aiels{
+    display: flex;
+    justify-content: space-between;
+
+}
+.aiels a{
+    margin-right: 50px;
+    text-decoration: none;
+    font-size: 19px;
+    color: navy;
+}
+.nav-link:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0;
+    position: relative;
+    background: #fff;
+    transition: width 0.5s ease 0s, left 0.5s ease 0s;
+    width: 0;
+  }
+  .nav-link:hover:after { 
+    width: 120%; 
+    left: 0; 
+  }
+.reg button{
+    border: 0.8px solid navy;
+    border-radius: 8px;
+    font-size: 16px;
+    height: 25px;
+    height: 35px; /* Increased height for a better button look */
+    padding: 0 20px; /* Added horizontal padding */
+    transition: background-color 0.3s ease; /* Added hover effect */
+}
+.reg button:hover {
+    background-color: #F1916D; /* Added hover background color */
+}
+.signup{
+    border: 1px solid #BD83B8;
+    margin: 100px;
+    height: 300px;
+}
+.shoot{
+    display: flex;
+    flex-direction: row;
+}
+.shooter-1{
+    flex: 1;
+}
+.shooter-2{
+    flex: 1;
+}
+
+.first-section{
+    border: 1px solid chocolate;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: rgb(243, 241, 241);
+}
+
+.first-section-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.first-section-links a{
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.first-section-links a :hover{
+    text-decoration: underline;
+}
+
+.most-liked{
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+.most-liked-section{
+    margin-top: 5px;
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space items evenly */
+    gap: 20px; /* Space between the cards */
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    border: 1px solid blue;
+    
+}
+ 
+.most-liked-cards {
+    /* position: relative; */
+    width: 100%;
+    max-width: 200px;
+    height: 390px;
+    background: linear-gradient(-45deg, #161616 0%, #000000 100%);
+    color: #81818144;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: end; */
+    padding: 14px;
+    gap: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+  
+  /* .most-liked-cards::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 0;
+    margin: auto;
+    width: 190px;
+    height: 260px;
+    border-radius: 15px;
+    background: linear-gradient(-45deg, #ff0000 0%, #d80000 40%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.175, 0.95, 0.9, 1.275);
+    box-shadow: 0px 20px 30px hsla(0, 0%, 0%, 0.521);
+  } */
+  
+  .most-liked-cards::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    width: 165px;
+    height: 245px;
+    background: linear-gradient(-45deg, #fc0000 0%, #f00000 100%);
+    transform: translate3d(0, 0, 0) scale(0.45);
+  }
+  
+  .heading {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 900;
+  }
+  
+  .most-liked-cards p:not(.heading) {
+    font-size: 18px;
+  }
+  
+  .most-liked-cards p:last-child {
+    color: #fa0000;
+    font-weight: 900;
+  }
+  
+  .most-liked-cards:hover::after {
+    transition: all 0.2s cubic-bezier(0.175, 0.285, 0.82, 1.275);
+  }
+  
+  .most-liked-cards:hover::before {
+    transform: scaleX(1.02) scaleY(1.02);
+    box-shadow: 0px 0px 30px 0px hsla(0, 100%, 50%, 0.356);
+  }
+  .most-liked-cards-title{
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .most-liked-cards-extra{
+    display: flex;
+    justify-content: space-between;
+  }
+  .most-liked-cards-extra h2{
+    color: #fa0000;
+  }
+
+
+  
+.btn1 {
+    width: 90px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+    background-size: 250%;
+    background-position: left;
+    color: #f8a807;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 1s;
+    overflow: hidden;
+  }
+
+  
+  /* .btn1::before {
+    position: absolute;
+    content: "";
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97%;
+    height: 90%;
+    border-radius: 8px;
+    transition-duration: 1s;
+    background-color: rgba(0, 0, 0, 0.842);
+    background-size: 200%;
+  } */
+  
+  .btn1:hover {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  /* .btn1:hover::before {
+    background-position: right;
+    transition-duration: 1s;
+  } */
+  
+  .btn1:active {
+    transform: scale(0.95);
+  }
+
+
+.navbar2{
+  padding: 20px;
+  background-color:black;
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.navbar2-sect2{
+  display: flex;
+  justify-content: space-between;
+}
+.navbar2-sect2 a{
+  margin-right: 50px;
+  text-decoration: none;
+  font-size: 19px;
+  color: wheat;
+}
+.navbar2-sect3 input{
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+}
+.navbar2-sect3 button{
+  height: 19px;
+  margin-left: -3px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: navy;
+  background-color: wheat;
+  font-weight: 500;
+}
+  
+.about{
+  display: flex;
+  background-color: #161616;
+  padding: 20px;
+  gap: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+.one,
+.two,
+.three,
+.four {
+  flex: 1;
+  display: flex; /* make each column a flex container */
+  flex-direction: column; /* stack items vertically */
+  gap: 10px; /* optional: spacing between links */
+}
+
+.about a {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+.about a:hover{
+  color: #77530a;
+  
+}
+.navbar3{
+  padding: 20px;
+  background-color:darkolivegreen;
+  display: flex;
+  justify-content: space-around;
+  height: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.navbar3{
+  background-color: beige;
+
+}
+.navbar3 a{
+  font-size: 23px;
+}
+.navbar3-sect2 input{
+  border-radius: 5px;
+  border: 0.5px solid orange;
+  height: 20px;
+}
+.navbar3-sect2 button{
+  height: 19px;
+  margin-left: -3px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: navy;
+  background-color: orange;
+  font-weight: 500;
+}
+.navbar4{
+  padding: 20px;
+  background-color:darkolivegreen;
+  display: flex;
+  justify-content: space-around;
+  height: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.navbar4 a{
+  margin-right: 50px;
+  text-decoration: none;
+  font-size: 19px;
+  color: beige;
+}
+  
+
+@media screen and (max-width) {
+    .nav-bar{
+        flex-direction: column;
+        height: auto;
+    }
+    .aiels {
+        flex-direction: column;
+    }
+    
+}

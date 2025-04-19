@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | YourBrand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a2a2a;
+            --secondary: #f8f8f8;
+            --accent: #ff6b6b;
+            --text: #333;
+            --light-text: #777;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navbar (consistent with product page) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .nav-icons i:hover {
+            color: var(--accent);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        
+        /* Cart Page Content */
+        .cart-container {
+            padding: 3rem 5%;
+            display: flex;
+            gap: 5%;
+        }
+        
+        .cart-items {
+            flex: 2;
+        }
+        
+        .cart-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .cart-empty i {
+            font-size: 3rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cart-empty h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cart-empty p {
+            color: var(--light-text);
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e05555;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Cart Item */
+        .cart-item {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .cart-item-img {
+            width: 120px;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-meta {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cart-item-price {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .cart-item-price .original {
+            text-decoration: line-through;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 0.5rem;
+            border: none;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+        
+        .remove-item {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: var(--accent);
+        }
+        
+        /* Cart Summary */
+        .cart-summary {
+            flex: 1;
+            background-color: var(--secondary);
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .summary-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-total {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .promo-code {
+            margin: 1.5rem 0;
+        }
+        
+        .promo-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            margin-top: 0.5rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--light-text);
+        }
+        
+        /* Recommended Products */
+        .recommended-products {
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            position: relative;
+        }
+        
+        .product-card-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        .product-card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Footer (consistent with product page) */
+        .footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .social-links i:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cart-container {
+                flex-direction: column;
+            }
+            
+            .cart-summary {
+                margin-top: 2rem;
+                position: static;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cart-item-img {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">MwamaStiches</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Collections</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-user"></i>
+            <div style="position: relative;">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count">3</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Cart Content -->
+    <div class="cart-container">
+        <div class="cart-items">
+            <h1 class="cart-title">Your Cart (3 Items)</h1>
+            
+            <!-- Empty Cart State (hidden by default) -->
+            <!-- <div class="cart-empty">
+                <i class="fas fa-shopping-bag"></i>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added anything to your cart yet</p>
+                <a href="#" class="btn btn-primary">Continue Shopping</a>
+            </div> -->
+            
+            <!-- Cart Items -->
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Premium Denim Jacket" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">Premium Denim Jacket</h3>
+                    <div class="cart-item-meta">
+                        <span>Color: Blue</span> | 
+                        <span>Size: M</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $89.99 <span class="original">$120.00</span>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="remove-item">
+                            <i class="far fa-trash-alt"></i>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Slim Fit Jeans" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">Slim Fit Jeans</h3>
+                    <div class="cart-item-meta">
+                        <span>Color: Dark Blue</span> | 
+                        <span>Size: 32</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $59.99 <span class="original">$79.99</span>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="1" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="remove-item">
+                            <i class="far fa-trash-alt"></i>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="White Cotton T-Shirt" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3 class="cart-item-title">White Cotton T-Shirt</h3>
+                    <div class="cart-item-meta">
+                        <span>Color: White</span> | 
+                        <span>Size: L</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $29.99
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" value="2" min="1" class="quantity-input">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                        <div class="remove-item">
+                            <i class="far fa-trash-alt"></i>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <h2 class="summary-title">Order Summary</h2>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>$179.97</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>$14.40</span>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <span>$194.37</span>
+            </div>
+            
+            <div class="promo-code">
+                <label for="promo">Promo Code</label>
+                <input type="text" id="promo" placeholder="Enter promo code" class="promo-input">
+            </div>
+            
+            <a href="#" class="btn btn-primary checkout-btn">Proceed to Checkout</a>
+            <a href="#" class="continue-shopping">or Continue Shopping</a>
+        </div>
+    </div>
+    
+    <!-- Recommended Products -->
+    <div class="recommended-products">
+        <h2 class="section-title">Complete Your Look</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Canvas Sneakers" class="product-card-img">
+                <h3 class="product-card-title">Canvas Sneakers</h3>
+                <div class="product-card-price">$49.99</div>
+            </div>
+            <div class="product-card">
+                <div class="product-badge">New</div>
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Wool Beanie" class="product-card-img">
+                <h3 class="product-card-title">Wool Beanie</h3>
+                <div class="product-card-price">$24.99</div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Leather Belt" class="product-card-img">
+                <h3 class="product-card-title">Leather Belt</h3>
+                <div class="product-card-price">$34.99</div>
+            </div>
+            <div class="product-card">
+                <div class="product-badge">Sale</div>
+                <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cotton Socks" class="product-card-img">
+                <h3 class="product-card-title">Cotton Socks (3 Pack)</h3>
+                <div class="product-card-price">$19.99 <span class="original">$29.99</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-title">YourBrand</h3>
+                <p>Premium quality clothing for the modern individual. Sustainable, ethical, and stylish.</p>
+                <div class="social-links">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Shop</h3>
+                <ul class="footer-links">
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Sale Items</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Customer Service</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">Newsletter</h3>
+                <p>Subscribe to get updates on new arrivals, special offers and other discount information.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 YourBrand. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Quantity selectors in cart items
+        const quantityInputs = document.querySelectorAll('.cart-item .quantity-input');
+        const minusBtns = document.querySelectorAll('.cart-item .quantity-btn:first-child');
+        const plusBtns = document.querySelectorAll('.cart-item .quantity-btn:last-child');
+        
+        minusBtns.forEach((btn, index) => {
+            btn.addEventListener('click', function() {
+                let value = parseInt(quantityInputs[index].value);
+                if (value > 1) {
+                    quantityInputs[index].value = value - 1;
+                    updateCartTotal();
+                }
+            });
+        });
+        
+        plusBtns.forEach((btn, index) => {
+            btn.addEventListener('click', function() {
+                let value = parseInt(quantityInputs[index].value);
+                quantityInputs[index].value = value + 1;
+                updateCartTotal();
+            });
+        });
+        
+        // Remove item buttons
+        const removeBtns = document.querySelectorAll('.remove-item');
+        
+        removeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cartItem = this.closest('.cart-item');
+                cartItem.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => {
+                    cartItem.remove();
+                    updateCartCount();
+                    updateCartTotal();
+                    checkEmptyCart();
+                }, 300);
+            });
+        });
+        
+        // Check if cart is empty
+        function checkEmptyCart() {
+            const cartItemsContainer = document.querySelector('.cart-items');
+            const cartItems = document.querySelectorAll('.cart-item');
+            const emptyState = document.querySelector('.cart-empty');
+            
+            if (cartItems.length === 0) {
+                if (!emptyState) {
+                    const emptyHTML = `
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h2>Your cart is empty</h2>
+                            <p>Looks like you haven't added anything to your cart yet</p>
+                            <a href="#" class="btn btn-primary">Continue Shopping</a>
+                        </div>
+                    `;
+                    cartItemsContainer.insertAdjacentHTML('beforeend', emptyHTML);
+                }
+            }
+        }
+        
+        // Update cart count in navbar
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.querySelectorAll('.cart-item');
+            cartCount.textContent = cartItems.length;
+        }
+        
+        // Update cart total (simplified version)
+        function updateCartTotal() {
+            // In a real implementation, you would calculate based on actual prices and quantities
+            console.log('Cart total would be recalculated here');
+        }
+        
+        // Add animation for fadeOut
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

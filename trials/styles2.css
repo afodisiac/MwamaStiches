@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.product-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.product-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-images {
+  width: 50%;
+}
+
+#product-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.color-options {
+  display: flex;
+  margin-top: 10px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.product-details {
+  width: 40%;
+  padding-left: 20px;
+}
+
+#product-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+#product-price {
+  font-size: 20px;
+  color: #e63946;
+  margin: 10px 0;
+}
+
+#product-sizes {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.add-to-cart {
+  padding: 10px 20px;
+  background-color: #1d3557;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #457b9d;
+}
+
+.similar-products {
+  margin-top: 50px;
+  width: 80%;
+}
+
+.similar-products h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.product-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  width: 30%;
+  padding: 15px;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-item p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.product-item p:nth-child(2) {
+  color: #e63946;
+  font-weight: bold;
+}

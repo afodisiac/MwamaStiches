@@ -1,0 +1,174 @@
+/* potential colors
+#00F5FF
+#ffd700
+#121826
+#333333
+#e5e5cb
+##121212
+*/
+
+:root {
+    --primary: #00F5FF;
+    --secondary: #ffd700;
+    --dark: #121826;
+    --light: #F5F5F5;
+    --accent: #121212;
+}
+
+/* Navbar Container */
+.nav-bar {
+    padding: 10px 20px;
+    background-color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 20px 0;
+    border-radius: 10px;
+    border: 0.3px solid var(--primary);
+    height: 80px; /* Fixed height to contain logo */
+}
+
+/* Logo Styles */
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 60px; /* Slightly smaller than navbar */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 180px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto; /* Centers the links */
+}
+
+.nav-link {
+    color: var(--light);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.search-box input {
+    padding: 8px 15px;
+    border-radius: 20px 0 0 20px;
+    border: 0.5px solid var(--primary);
+    background: rgba(255,255,255,0.1);
+    color: var(--light);
+    width: 200px;
+}
+
+.search-box button {
+    padding: 8px 15px;
+    border-radius: 0 20px 20px 0;
+    border: none;
+    background: var(--primary);
+    color: var(--dark);
+    cursor: pointer;
+    margin-left: -2px;
+    height: 33px;
+}
+
+/* User Actions */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-btn {
+    position: relative;
+    color: var(--light);
+    font-size: 18px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--secondary);
+    color: var(--dark);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.auth-btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: var(--primary);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+    background: var(--secondary);
+}
+
+/* Underline animation (keep your existing) */
+.nav-link:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    background: var(--primary);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.nav-link:hover:after { 
+    width: 100%; 
+}
+.menu-toggle{
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .nav-bar {
+        margin: 5px 10px 0;
+        padding: 10px 15px;
+    }
+    
+    .logo-img {
+        height: 50px;
+        max-width: 150px;
+    }
+    .menu-toggle{
+        display: block;
+    }
+    
+    .auth-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

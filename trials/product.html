@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Denim Jacket | FashionStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles3.css">
+
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">FashionStore</div>
+            <div class="nav-links">
+                <a href="#">Women</a>
+                <a href="#">Men</a>
+                <a href="#">Kids</a>
+                <a href="#">Sale</a>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="#">Home</a> / <a href="#">Women</a> / <a href="#">Jackets</a> / Premium Denim Jacket
+        </div>
+        
+        <div class="product-main">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Premium Denim Jacket" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 1" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1604644401898-6d0ab5b7d42a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 2" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 3" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Thumbnail 4" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Premium Denim Jacket</h1>
+                <div class="product-price">
+                    <span class="original-price">$129.99</span>
+                    <span class="sale-price">$99.99</span>
+                </div>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#reviews" class="review-count">42 reviews</a>
+                </div>
+                
+                <div class="color-options">
+                    <span class="option-title">Color: <span id="selectedColor">Dark Blue</span></span>
+                    <div class="color-swatches">
+                        <div class="color-swatch active" style="background: #2c3e50;" title="Dark Blue" onclick="selectColor(this, 'Dark Blue')"></div>
+                        <div class="color-swatch" style="background: #95a5a6;" title="Light Gray" onclick="selectColor(this, 'Light Gray')"></div>
+                        <div class="color-swatch" style="background: #e74c3c;" title="Red" onclick="selectColor(this, 'Red')"></div>
+                        <div class="color-swatch" style="background: #1a1a1a;" title="Black" onclick="selectColor(this, 'Black')"></div>
+                    </div>
+                </div>
+                
+                <div class="size-options">
+                    <span class="option-title">Size:</span>
+                    <div class="size-selector">
+                        <div class="size-option" onclick="selectSize(this)">XS</div>
+                        <div class="size-option" onclick="selectSize(this)">S</div>
+                        <div class="size-option active" onclick="selectSize(this)">M</div>
+                        <div class="size-option" onclick="selectSize(this)">L</div>
+                        <div class="size-option" onclick="selectSize(this)">XL</div>
+                    </div>
+                    <a href="#" class="size-guide-link">Size Guide</a>
+                </div>
+                
+                <div class="quantity-selector">
+                    <span class="option-title">Quantity:</span>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="adjustQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        <button class="quantity-btn" onclick="adjustQuantity(1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-secondary" onclick="buyNow()">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                
+                <button class="wishlist-btn" onclick="toggleWishlist()">
+                    <i class="far fa-heart"></i> <span class="wishlist-text">Add to Wishlist</span>
+                </button>
+                
+                <div class="stock-status">
+                    <i class="fas fa-check-circle"></i> In Stock (Only 5 left)
+                </div>
+                
+                <div class="delivery-info">
+                    <div><i class="fas fa-truck"></i> Free delivery on orders over $50</div>
+                    <div><i class="fas fa-exchange-alt"></i> Free returns within 30 days</div>
+                </div>
+                
+                <div class="payment-options">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="PayPal" class="payment-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Apple Pay" class="payment-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="Google Pay" class="payment-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="Visa" class="payment-icon">
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-details">
+            <div class="details-tabs">
+                <button class="tab-btn active" onclick="openTab('description')">Description</button>
+                <button class="tab-btn" onclick="openTab('details')">Details & Care</button>
+                <button class="tab-btn" onclick="openTab('shipping')">Shipping & Returns</button>
+            </div>
+            
+            <div id="description" class="tab-content active">
+                <div class="description-content">
+                    <p>Our Premium Denim Jacket is crafted from 100% organic cotton denim for exceptional comfort and durability. The classic trucker jacket design features a regular fit, button-front closure, and chest flap pockets with button closures.</p>
+                    <p>The jacket is pre-washed for a soft feel and minimal shrinkage, with subtle fading for a vintage-inspired look. The interior features a soft lining for added comfort against the skin.</p>
+                    <p>Pair this versatile jacket with your favorite t-shirt and jeans for a casual look, or layer it over a dress for a stylish contrast.</p>
+                </div>
+            </div>
+            
+            <div id="details" class="tab-content">
+                <table class="details-table">
+                    <tr>
+                        <th>Material</th>
+                        <td>100% Organic Cotton Denim</td>
+                    </tr>
+                    <tr>
+                        <th>Fit</th>
+                        <td>Regular Fit</td>
+                    </tr>
+                    <tr>
+                        <th>Closure</th>
+                        <td>Button Front</td>
+                    </tr>
+                    <tr>
+                        <th>Pockets</th>
+                        <td>2 Chest Flap Pockets with Button Closure, 2 Side Pockets</td>
+                    </tr>
+                    <tr>
+                        <th>Care Instructions</th>
+                        <td>Machine wash cold with like colors. Tumble dry low. Do not bleach. Iron low heat if needed.</td>
+                    </tr>
+                    <tr>
+                        <th>Sustainability</th>
+                        <td>Made with 100% organic cotton, saving 2,500 liters of water compared to conventional denim. Produced in a Fair Trade Certified™ factory.</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="shipping" class="tab-content">
+                <div class="description-content">
+                    <h3>Shipping</h3>
+                    <p>We offer free standard shipping on all orders over $50. Standard delivery takes 3-5 business days. Express shipping options are available at checkout.</p>
+                    
+                    <h3>Returns</h3>
+                    <p>We accept returns within 30 days of purchase for a full refund. Items must be unworn, unwashed, and with all original tags attached. Return shipping is free.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reviews-section" id="reviews">
+            <h2 class="section-title">Customer Reviews</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Sarah J.</span>
+                        <span class="review-date">May 15, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>I love this jacket! The fit is perfect and the quality is amazing. It's become my go-to jacket for spring and fall.</p>
+                    <div class="review-images">
+                        <img src="https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Review photo" class="review-image">
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Michael T.</span>
+                        <span class="review-date">April 28, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>Great jacket overall. The material is sturdy but comfortable. Only reason I didn't give 5 stars is that it runs slightly large.</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Emma L.</span>
+                        <span class="review-date">March 10, 2023</span>
+                    </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>This jacket exceeded my expectations! The color is beautiful and it's so versatile. I've already gotten so many compliments.</p>
+                    <div class="review-images">
+                        <img src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Review photo" class="review-image">
+                        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Review photo" class="review-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="related-products">
+            <h2 class="section-title">Complete The Look</h2>
+            <div class="products-carousel">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="White T-Shirt" class="product-card-img">
+                    <div class="product-card-info">
+                        <div class="product-card-title">Essential White Tee</div>
+                        <div class="product-card-price">$29.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Slim Jeans" class="product-card-img">
+                    <div class="product-card-info">
+                        <div class="product-card-title">Slim Fit Jeans</div>
+                        <div class="product-card-price">$79.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sneakers" class="product-card-img">
+                    <div class="product-card-info">
+                        <div class="product-card-title">Classic White Sneakers</div>
+                        <div class="product-card-price">$89.99</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Cap" class="product-card-img">
+                    <div class="product-card-info">
+                        <div class="product-card-title">Baseball Cap</div>
+                        <div class="product-card-price">$24.99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Kids</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Customer Service</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe for updates and special offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" class="newsletter-input">
+                    <button type="submit" class="newsletter-btn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></

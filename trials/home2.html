@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style1.css">
+    <title>Mwama Stiches - Luxury Fashion Redefined</title>
+    <style>
+        /* Homepage Specific Styles */
+        :root {
+            --primary: #00F5FF;
+            --secondary: #ffd700;
+            --dark: #121826;
+            --light: #F5F5F5;
+            --accent: #121212;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Hero Section - Product Focused */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: -80px;
+            padding-top: 80px;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .hero-content {
+            width: 100%;
+            padding: 0 5%;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 4.5vw;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+            max-width: 600px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 35px;
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            color: var(--dark);
+            border-color: var(--secondary);
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        /* Immediate Product Showcase */
+        .featured-products {
+            padding: 60px 5%;
+            background: var(--accent);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-image-container {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .original-price {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart {
+            flex-grow: 1;
+            padding: 8px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--secondary);
+        }
+        
+        .wishlist {
+            width: 40px;
+            margin-left: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .wishlist:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ff6b6b;
+        }
+        
+        /* Collections Banner */
+        .collections-banner {
+            padding: 80px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--accent) 100%);
+        }
+        
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .collection-item {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .collection-item:hover .collection-image {
+            transform: scale(1.1);
+        }
+        
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+        
+        .collection-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .collection-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .collection-link:hover {
+            background: var(--secondary);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--light);
+            font-size: 1rem;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .newsletter-button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            padding: 10px 25px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-button:hover {
+            background: var(--secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--accent);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .collections-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .collections-grid .collection-item:last-child {
+                grid-column: span 2;
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 60vh;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+                max-width: 100%;
+            }
+            
+            .hero-subtitle {
+                max-width: 100%;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .product-image-container {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .collections-grid .collection-item:last-child {
+                grid-column: span 1;
+                height: 200px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            
+            .product-image-container {
+                height: 180px;
+            }
+            
+            .product-info {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="header">
+        <div class="nav-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="afodisiac/mwamasticheslogo.jpg" alt="Mwama Stiches Logo" class="logo-img">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-links" id="main-nav">
+                <a class="nav-link" href="men.html">Men</a>
+                <a class="nav-link" href="women.html">Women</a>
+                <a class="nav-link" href="streetwear.html">Street Wear</a>
+            </div>
+            
+            <div class="search-box">
+                <form action="#">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <div class="user-actions">
+                <a href="cart.html" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="signup.html" class="auth-btn">Sign Up</a>
+                <a href="login.html" class="auth-btn">Log In</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-looking-at-the-camera-in-a-fashion-store-39853-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">Shop The Latest Drops</h1>
+            <p class="hero-subtitle">Luxury fashion that makes a statement. Browse our newest arrivals below.</p>
+            <a href="#featured" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+    
+    <!-- Featured Products - Immediate Market Exposure -->
+    <section class="featured-products" id="featured">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="product-badge">New</span>
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" alt="Men's Leather Jacket" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Men's Outerwear</p>
+                    <h3 class="product-name">Premium Leather Jacket</h3>
+                    <div class="product-price">
+                        <span class="current-price">$299</span>
+                        <span class="original-price">$399</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb595d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=734&q=80" alt="Women's Evening Dress" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Women's Dresses</p>
+                    <h3 class="product-name">Silk Evening Gown</h3>
+                    <div class="product-price">
+                        <span class="current-price">$249</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="product-badge">Bestseller</span>
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80" alt="Streetwear Hoodie" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Streetwear</p>
+                    <h3 class="product-name">Oversized Graphic Hoodie</h3>
+                    <div class="product-price">
+                        <span class="current-price">$89</span>
+                        <span class="original-price">$120</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Designer Sunglasses" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Accessories</p>
+                    <h3 class="product-name">Aviator Sunglasses</h3>
+                    <div class="product-price">
+                        <span class="current-price">$129</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Collections Banner -->
+    <section class="collections-banner">
+        <h2 class="section-title">Shop By Collection</h2>
+        <div class="collections-grid">
+            <div class="collection-item">
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Men's Collection" class="collection-image">
+                <div class="collection-overlay">
+                    <h3 class="collection-title">Men's Essentials</h3>
+                    <a href="men.html" class="collection-link">View Collection</a>
+                </div>
+            </div>
+            <div class="collection-item">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Women's Collection" class="collection-image">
+                <div class="collection-overlay">
+                    <h3 class="collection-title">Women's Couture</h3>
+                    <a href="women.html" class="collection-link">View Collection</a>
+                </div>
+            </div>
+            <div class="collection-item">
+                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Streetwear Collection" class="collection-image">
+                <div class="collection-overlay">
+                    <h3 class="collection-title">Urban Streetwear</h3>
+                    <a href="streetwear.html" class="collection-link">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2 class="section-title">Join Our Exclusive List</h2>
+        <p>Get 15% off your first order and early access to new collections</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-button">Subscribe</button>
+        </form>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="afodisiac/mwamasticheslogo.jpg" alt="Mwama Stiches Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p class="copyright">© 2023 Mwama Stiches. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            const nav = document.getElementById('main-nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Add to cart functionality (simplified example)
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                alert(`${productName} added to cart!`);
+                
+                // In a real implementation, you would update the cart count here
+                // document.querySelector('.cart-count').textContent = parseInt(document.querySelector('.cart-count').textContent) + 1;
+            });
+        });
+    </script>
+</body>
+</html>

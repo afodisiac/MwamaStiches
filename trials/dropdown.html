@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Parent container for dropdown */
+.nav-item {
+    position: relative;
+}
+
+/* Dropdown styling */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown link styling */
+.dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown a:hover {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+/* Folded paper corner effect */
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 25px 25px 0;
+    border-style: solid;
+    border-color: var(--primary) transparent transparent transparent;
+    z-index: 1;
+}
+
+/* Optional: slight shadow on fold for realism */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.1), transparent);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="nav-links" id="main-nav">
+        <div class="nav-item">
+            <a class="nav-link" href="men.html">Men</a>
+            <div class="dropdown">
+                <a href="#">Jackets</a>
+                <a href="#">Shirts</a>
+                <a href="#">Accessories</a>
+            </div>
+        </div>
+    
+        <div class="nav-item">
+            <a class="nav-link" href="women.html">Women</a>
+            <div class="dropdown">
+                <a href="#">Dresses</a>
+                <a href="#">Tops</a>
+                <a href="#">Bags</a>
+            </div>
+        </div>
+    
+        <div class="nav-item">
+            <a class="nav-link" href="streetwear.html">Street Wear</a>
+            <div class="dropdown">
+                <a href="#">Hoodies</a>
+                <a href="#">Sneakers</a>
+                <a href="#">Hats</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

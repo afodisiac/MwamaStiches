@@ -52,6 +52,9 @@ body{
 }
 
 /* Navigation Links */
+.nav-item{
+    position: relative;
+}
 .nav-links {
     display: flex;
     gap: 30px;
@@ -65,6 +68,70 @@ body{
     font-weight: 500;
     position: relative;
     padding: 5px 0;
+}
+/* Dropdown styling */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    min-width: 260px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 10px 0;
+}
+/* Show dropdown on hover */
+.nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown link styling */
+.dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown a:hover {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+/* Folded paper corner effect */
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 25px 25px 0;
+    border-style: solid;
+    border-color: var(--primary) transparent transparent transparent;
+    z-index: 1;
+}
+
+/* Optional: slight shadow on fold for realism */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.1), transparent);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 /* Search Box */
@@ -206,8 +273,8 @@ body{
     font-family: 'Montserrat', sans-serif;
     
 }
-.section-title a{
-    color: var(--light);
+.section-title {
+    color: white;
 }
 
 .section-title:after {
@@ -763,7 +830,7 @@ body{
     font-size: 1.5rem;
     margin-bottom: 2rem;
     text-align: center;
-    color: var(--accent);
+    color: var(--light);
 }
 
 .products-grid {
@@ -797,7 +864,7 @@ body{
     font-weight: 600;
 }
 
-.product-badge {
+/* .product-badge {
     position: absolute;
     top: 1rem;
     left: 1rem;
@@ -805,7 +872,7 @@ body{
     color: white;
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
-}
+} */
 @media (max-width: 480px) {
     .nav-bar {
         margin: 5px 10px 0;
